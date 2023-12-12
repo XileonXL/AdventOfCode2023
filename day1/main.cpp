@@ -1,3 +1,9 @@
+/*
+* Calculate the calibration combining first and last digit of
+* all lines (addition line by line).
+* The spelled out with letters digit are also considered as valid digits.
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -49,7 +55,8 @@ int getLineCalibration(const std::string &line) {
     for (; start <= end && first_digit == 0; start++)
       first_digit = std::isdigit(line[start]) ? line[start] - '0' : getSpelledDigit(start, line);
 
-    for (; end >= start-1 && second_digit == 0; end--)
+    // -1 operation is because start and end could be the same number
+    for (; end >= start-1 && second_digit == 0; end--) 
       second_digit = std::isdigit(line[end]) ? line[end] - '0' : getSpelledDigit(end, line);
   }
 
